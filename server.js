@@ -1,5 +1,6 @@
 //server.js es la entrada principal osea que es lo primero que se ejecuta
 
+const express = require('express');
 const app = require('./src/app');// Importa la aplicación desde app.js
 const connectDB = require('./src/config/db');//Importa la funcion para conectarse a la bd  
 const dotenv = require('dotenv');//Importa el paquete "dotenv" para las variables de entorno
@@ -8,6 +9,7 @@ dotenv.config();//carga automaticamente las variables de entorno
 // Define el puerto del servidor
 const port = process.env.PORT || 3000; 
 
+app.use(express.static('frontend'));
 // Función asíncrona para iniciar toda la aplicación (DB y Servidor Express)
 const startApplication = async () => {
   try {

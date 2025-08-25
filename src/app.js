@@ -2,18 +2,12 @@
 
 const express = require('express');//importamos express, framework para servidores http en node.js
 const app = express();//Crear aplicación Express
+const userRoutes = require('./routes/userRoutes');
 
 // Middleware básico para parsear JSON y datos de formularios
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-// Ruta de bienvenida del servidor
-app.get('/', (req, res) => {
-  res.json({
-    mensaje: 'Servidor funcionando correctamente',
-    fecha: new Date().toISOString()
-  });
-});
+app.use('/api', userRoutes);
 
 // Ruta para verificar el estado de la conexión a MongoDB
 app.get('/db-status', (req, res) => {
