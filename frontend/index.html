@@ -2,10 +2,11 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>ConectandoMongoExpress</title>
+    <title>Gestión de Usuarios</title>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <h1>Nuevo usuario</h1>
+    <h1>Nuevo Usuario</h1>
     <form id="user-form">
         <label for="name">Nombre:</label>
         <input type="text" id="name" name="name" required><br><br>
@@ -18,32 +19,22 @@
 
         <button type="submit">Crear Usuario</button>
     </form>
-    <script>
-        const form = document.getElementById('user-form');
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault(); // Evita que la página se recargue
+    
+    <hr>
+    
+    <h1>Usuarios Registrados</h1>
+    <button id="show-users-btn">Mostrar Usuarios</button>
+    <table id="users-table">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            </tbody>
+    </table>
 
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-
-            try {
-                const response = await fetch('http://localhost:3000/api/users', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ name, email, password })
-                });
-
-                const result = await response.json();
-                console.log('Usuario creado:', result);
-                alert('¡Usuario creado con éxito!');
-            } catch (error) {
-                console.error('Error:', error);
-                alert('Error al crear el usuario.');
-            }
-        });
-    </script>
+    <script src="js/main.js"></script>
 </body>
 </html>
